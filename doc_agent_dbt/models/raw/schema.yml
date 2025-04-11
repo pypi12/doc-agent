@@ -1,0 +1,7 @@
+version: 2
+
+models:
+  - name: raw_sales
+    description: "Raw sales data from Amazon sales dataset"
+    config:
+      tags: ["raw"]

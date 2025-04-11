@@ -1,0 +1,103 @@
+version: 2
+
+models:
+  - name: stg_sales
+    description: Staging layer for Amazon sales data
+    columns:
+      - name: order_id
+        description: Unique identifier for each order
+        tests:
+          - not_null
+      
+      - name: product_asin
+        description: Amazon Standard Identification Number
+        tests:
+          - not_null
+      
+      - name: product_sku
+        description: Stock Keeping Unit
+        tests:
+          - not_null
+      
+      - name: order_date
+        description: Date when the order was placed
+        tests:
+          - not_null
+      
+      - name: order_status
+        description: Current status of the order
+        tests:
+          - not_null
+          - accepted_values:
+              values:
+                - Cancelled
+                - Pending
+                - 'Pending - Waiting for Pick Up'
+                - Shipped
+                - 'Shipped - Damaged'
+                - 'Shipped - Delivered to Buyer'
+                - 'Shipped - Lost in Transit'
+                - 'Shipped - Out for Delivery'
+                - 'Shipped - Picked Up'
+                - 'Shipped - Rejected by Buyer'
+                - 'Shipped - Returned to Seller'
+                - 'Shipped - Returning to Seller'
+                - Shipping
+      
+      - name: fulfillment_type
+        description: Method of order fulfillment
+      
+      - name: sales_channel
+        description: Channel through which the sale was made
+      
+      - name: shipping_service_level
+        description: Level of shipping service selected
+      
+      - name: courier_status
+        description: Status of the courier delivery
+      
+      - name: product_style
+        description: Style identifier of the product
+      
+      - name: product_category
+        description: Category of the product
+        tests:
+          - not_null
+      
+      - name: product_size
+        description: Size of the product
+      
+      - name: quantity
+        description: Number of items ordered
+        tests:
+          - not_null
+          - positive_values
+      
+      - name: amount
+        description: Total amount of the order in the specified currency
+      
+      - name: currency
+        description: Currency of the order amount
+      
+      - name: ship_city
+        description: City where the order was shipped
+      
+      - name: ship_state
+        description: State where the order was shipped
+      
+      - name: ship_postal_code
+        description: Postal code of the shipping address
+      
+      - name: ship_country
+        description: Country where the order was shipped
+      
+      - name: promotion_ids
+        description: IDs of promotions applied to the order
+      
+      - name: is_b2b
+        description: Whether the order is a business-to-business transaction
+        tests:
+          - not_null
+      
+      - name: fulfilled_by
+        description: Entity responsible for fulfilling the order

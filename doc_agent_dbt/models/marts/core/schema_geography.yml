@@ -1,0 +1,48 @@
+version: 2
+
+models:
+  - name: dim_geography
+    description: Geography dimension containing shipping address hierarchies
+    columns:
+      - name: geography_key
+        description: Surrogate key for the geography dimension
+        tests:
+          - unique
+          - not_null
+
+      - name: city
+        description: City name
+        tests:
+          - not_null
+
+      - name: state
+        description: State code
+        tests:
+          - not_null
+
+      - name: postal_code
+        description: Postal/ZIP code
+        tests:
+          - not_null
+
+      - name: country
+        description: Country name
+        tests:
+          - not_null
+
+      - name: region
+        description: Geographical region based on state
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['West', 'Northeast', 'Southeast', 'Midwest', 'Other']
+
+      - name: created_at
+        description: Timestamp when this record was first created
+        tests:
+          - not_null
+
+      - name: updated_at
+        description: Timestamp when this record was last updated
+        tests:
+          - not_null
